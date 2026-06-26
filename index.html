@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wine Quality Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h1>🍷 Wine Quality Prediction</h1>
+    <p>Enter wine chemical properties to predict quality</p>
+
+    <form action="/predict" method="post">
+
+        <div class="form-group">
+            <input type="number" step="any" name="fixed_acidity" placeholder="Fixed Acidity" required>
+            <input type="number" step="any" name="volatile_acidity" placeholder="Volatile Acidity" required>
+        </div>
+
+        <div class="form-group">
+            <input type="number" step="any" name="citric_acid" placeholder="Citric Acid" required>
+            <input type="number" step="any" name="residual_sugar" placeholder="Residual Sugar" required>
+        </div>
+
+        <div class="form-group">
+            <input type="number" step="any" name="chlorides" placeholder="Chlorides" required>
+            <input type="number" step="any" name="free_sulfur_dioxide" placeholder="Free Sulfur Dioxide" required>
+        </div>
+
+        <div class="form-group">
+            <input type="number" step="any" name="total_sulfur_dioxide" placeholder="Total Sulfur Dioxide" required>
+            <input type="number" step="any" name="density" placeholder="Density" required>
+        </div>
+
+        <div class="form-group">
+            <input type="number" step="any" name="pH" placeholder="pH" required>
+            <input type="number" step="any" name="sulphates" placeholder="Sulphates" required>
+        </div>
+
+        <div class="form-group">
+            <input type="number" step="any" name="alcohol" placeholder="Alcohol %" required>
+        </div>
+
+        <button type="submit">Predict Quality</button>
+    </form>
+
+    {% if prediction %}
+        <div class="result">
+            <h2>Prediction Result</h2>
+            <p class="{{ 'good' if prediction == 'GOOD' else 'bad' }}">
+                Wine Quality: {{ prediction }}
+            </p>
+        </div>
+    {% endif %}
+</div>
+
+</body>
+</html>
